@@ -1,0 +1,32 @@
+### 1. Criar produto
+POST http://localhost:8081/products
+Content-Type: application/json
+
+{
+  "name": "avião 89 28\"",
+  "code": "MON24XYZ",
+  "quantity": 87,
+  "price": 13299.90
+}
+
+### 2. Listar todos (para pegar o ID)
+GET http://localhost:8081/products
+Accept: application/json
+
+### 3. Atualizar o produto com ID 1
+PUT http://localhost:8081/products/2
+Content-Type: application/json
+
+{
+  "name": "Monitor 30\" Full HD update",
+  "code": "MON24FHD",
+  "quantity": 10,
+  "price": 1399.90
+}
+
+### 4. Deletar o produto
+DELETE http://localhost:8081/products/1
+
+### 5. Verificar se foi deletado
+GET http://localhost:8081/products/6
+Accept: application/json
