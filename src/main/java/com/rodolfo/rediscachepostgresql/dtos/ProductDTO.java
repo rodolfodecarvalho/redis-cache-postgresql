@@ -1,6 +1,6 @@
-package com.rodolfo.rediscachemysql.dtos;
+package com.rodolfo.rediscachepostgresql.dtos;
 
-import com.rodolfo.rediscachemysql.model.Product;
+import com.rodolfo.rediscachepostgresql.model.Product;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 

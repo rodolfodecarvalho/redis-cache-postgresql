@@ -1,8 +1,8 @@
-package com.rodolfo.rediscachemysql.controller;
+package com.rodolfo.rediscachepostgresql.controller;
 
-import com.rodolfo.rediscachemysql.dtos.ProductDTO;
-import com.rodolfo.rediscachemysql.model.Product;
-import com.rodolfo.rediscachemysql.services.ProductServices;
+import com.rodolfo.rediscachepostgresql.dtos.ProductDTO;
+import com.rodolfo.rediscachepostgresql.model.Product;
+import com.rodolfo.rediscachepostgresql.services.ProductServices;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,8 +1,8 @@
-package com.rodolfo.rediscachemysql.services;
+package com.rodolfo.rediscachepostgresql.services;
 
-import com.rodolfo.rediscachemysql.exeptions.RecordNotFoundException;
-import com.rodolfo.rediscachemysql.model.Product;
-import com.rodolfo.rediscachemysql.repository.ProductRepository;
+import com.rodolfo.rediscachepostgresql.exeptions.RecordNotFoundException;
+import com.rodolfo.rediscachepostgresql.model.Product;
+import com.rodolfo.rediscachepostgresql.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.*;

@@ -1,6 +1,6 @@
-package com.rodolfo.rediscachemysql.repository;
+package com.rodolfo.rediscachepostgresql.repository;
 
-import com.rodolfo.rediscachemysql.model.Product;
+import com.rodolfo.rediscachepostgresql.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {

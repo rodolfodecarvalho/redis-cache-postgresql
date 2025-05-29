@@ -1,4 +1,4 @@
-package com.rodolfo.rediscachemysql.exeptions;
+package com.rodolfo.rediscachepostgresql.exeptions;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.Ordered;

@@ -1,9 +1,10 @@
-package com.rodolfo.rediscachemysql.model;
+package com.rodolfo.rediscachepostgresql.model;
 
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.redis.core.index.Indexed;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 @Data
@@ -20,6 +21,7 @@ public class Product implements Serializable {
     @Id
     @Indexed
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Serial
     private Long id;
 
     private String name;

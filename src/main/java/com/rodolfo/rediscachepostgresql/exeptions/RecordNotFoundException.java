@@ -1,4 +1,4 @@
-package com.rodolfo.rediscachemysql.exeptions;
+package com.rodolfo.rediscachepostgresql.exeptions;
 
 import java.io.Serial;
 

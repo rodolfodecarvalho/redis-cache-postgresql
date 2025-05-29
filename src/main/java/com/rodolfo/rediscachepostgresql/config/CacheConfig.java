@@ -1,4 +1,4 @@
-package com.rodolfo.rediscachemysql.config;
+package com.rodolfo.rediscachepostgresql.config;
 
 
 import org.springframework.beans.factory.annotation.Value;
