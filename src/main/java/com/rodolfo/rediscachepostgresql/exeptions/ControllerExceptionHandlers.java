@@ -7,15 +7,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.ObjectUtils;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.net.URI;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Order(Ordered.HIGHEST_PRECEDENCE)
@@ -39,7 +40,7 @@ public class ControllerExceptionHandlers {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ProblemDetail> methodArgumentNotValidException(MethodArgumentNotValidException ex) {
 
-        List<FieldMessage> errors = new ArrayList<>();
+        Map<String, String> errors = new HashMap<>();
 
         String details = getErrorsDetails(ex);
 
@@ -49,8 +50,7 @@ public class ControllerExceptionHandlers {
         problemDetail.setProperty("timestamp", Instant.now());
         problemDetail.setDetail(details);
 
-        ex.getBindingResult().getFieldErrors().forEach(error -> errors.add(new FieldMessage(error.getField(), error.getDefaultMessage())));
-        ex.getBindingResult().getGlobalErrors().forEach(error -> errors.add(new FieldMessage(error.getObjectName(), error.getDefaultMessage())));
+        ex.getBindingResult().getAllErrors().forEach(error -> errors.put(((FieldError) error).getField(), error.getDefaultMessage()));
 
         problemDetail.setProperty("errors", errors);
 
@@ -60,10 +60,10 @@ public class ControllerExceptionHandlers {
     }
 
     private String getErrorsDetails(MethodArgumentNotValidException ex) {
-        return Optional.ofNullable(ex.getDetailMessageArguments())
+        return Optional.of(ex.getDetailMessageArguments())
                 .map(args -> Arrays.stream(args)
                         .filter(msg -> !ObjectUtils.isEmpty(msg))
-                        .reduce("Please make sure to provide a valid request, ", (a, b) -> a + " " + b)
+                        .reduce("Please make sure to provide a valid request", (a, b) -> a + " " + b)
                 )
                 .orElse("").toString();
     }

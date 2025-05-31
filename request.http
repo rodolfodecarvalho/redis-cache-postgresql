@@ -1,32 +1,98 @@
-### 1. Criar produto
-POST http://localhost:8081/products
+# Variables
+@baseUrl = http://localhost:8081
+@productId = 3a450024-77e1-4550-86ba-a7880532b3e8
+@commentId =
+
+### 1. Create Product
+POST {{baseUrl}}/products
 Content-Type: application/json
 
 {
-  "name": "avião 89 28\"",
+  "name": "Monitor 50\"",
   "code": "MON24XYZ",
   "quantity": 87,
   "price": 13299.90
 }
 
-### 2. Listar todos (para pegar o ID)
-GET http://localhost:8081/products
+### 2. List all Product
+GET {{baseUrl}}/products
 Accept: application/json
 
-### 3. Atualizar o produto com ID 1
-PUT http://localhost:8081/products/2
+### 3. Update Product with specified ID
+PUT {{baseUrl}}/products/{{productId}}
 Content-Type: application/json
 
 {
-  "name": "Monitor 30\" Full HD update",
+  "name": "Monitor 60\" Full HD update",
   "code": "MON24FHD",
   "quantity": 10,
   "price": 1399.90
 }
 
-### 4. Deletar o produto
-DELETE http://localhost:8081/products/1
+### 4. Delete Product by ID
+DELETE {{baseUrl}}/products/{{productId}}
 
-### 5. Verificar se foi deletado
-GET http://localhost:8081/products/6
+### 5. Search Product By ID
+GET {{baseUrl}}/products/{{productId}}
+Accept: application/json
+
+### 6. Get Comments by Product ID
+GET {{baseUrl}}/comments/product/{{productId}}
+Accept: application/json
+
+### 7. Add Comment to Product
+POST {{baseUrl}}/comments/product/{{productId}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "content": "Este é um comentário de exemplo sobre o produto"
+}
+
+### 8. Update Comment
+PUT {{baseUrl}}/comments/{{commentId}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "content": "Comentário atualizado com novo conteúdo"
+}
+
+### 9. Delete Comment
+DELETE {{baseUrl}}/comments/{{commentId}}
+Accept: application/json
+
+### 10. Add Comment with Empty Content (Should Return 400)
+POST {{baseUrl}}/comments/product/{{productId}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "content": ""
+}
+
+### 11. Add Comment with Null Content (Should Return 400)
+POST {{baseUrl}}/comments/product/{{productId}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "content": null
+}
+
+### 12. Get Comments for Non-existent Product
+GET {{baseUrl}}/comments/product/00000000-0000-0000-0000-000000000000
+Accept: application/json
+
+### 13. Update Non-existent Comment
+PUT {{baseUrl}}/comments/00000000-0000-0000-0000-000000000000
+Content-Type: application/json
+Accept: application/json
+
+{
+  "content": "Tentativa de atualizar comentário inexistente"
+}
+
+### 14. Delete Non-existent Comment
+DELETE {{baseUrl}}/comments/00000000-0000-0000-0000-000000000000
 Accept: application/json
